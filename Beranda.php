@@ -181,18 +181,15 @@ $resultAllBook = mysqli_query($conn, $queryAllBook);
         <h2 class="text-center" style="color:floralwhite 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif "> <b>Daftar Tumbuhan</b></h2>
         <div class="book-list" id="bookList">
         <?php while($row = mysqli_fetch_assoc($resultAllBook)): ?>
-            <div class="book-item <?= htmlspecialchars($row['genre']) ?> col-md-3">
+            <div class="book-item <?= htmlspecialchars($row['genre']) ?> col-md-3"
+                onclick="window.location.href='informasi.php?id_book=<?= urlencode($row['id_book']) ?>'"
+                style="cursor: pointer;">
                 <img src="<?= htmlspecialchars($row['image_url']) ?>" alt="<?= htmlspecialchars($row['title']) ?>">
                 <hr>
                 <h5><?= htmlspecialchars($row['title']) ?></h5>
                 <p> Rp.<?= htmlspecialchars($row['author']) ?></p>
-                <a href="form.php"><p>Isi Review</p></a>
-                <details>
-                    <summary>Deskripsi</summary>
-                    <p align="justify"><?= nl2br(htmlspecialchars($row['description'])) ?></p>
-                </details>
-                <a href="Review.php?id_book=<?= urlencode($row['id_book']) ?>" class='btn btn-primary btn-sm'>Review</a>
             </div>
+
         <?php endwhile; ?>
         </div>
         
